@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <title>Dragable Div Element</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+    
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>Draggable Div</header>
+        <div class="content">
+            <div class="icon"><i class="bx bx-move"></i></div>
+            <div class="title">Draggable Div</div>
+            <p>This is a draggable div which was created using HTML, CSS and Javascript.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type</p>
+        </div>
+    </div>
+
+
+    <script>
+        const wrapper = document.querySelector(".wrapper"),
+            header = wrapper.querySelector("header");
+
+        function ondrag({movementX, movementY}) {
+            let getStyle = window.getComputedStyle(wrapper);
+            let left = parseInt(getStyle.left); // getting left value of wrraopper and parsing string to int or number
+            let top = parseInt(getStyle.top); // getting top value of wrraopper and parsing string to int or number
+            //console.log(e);
+
+            wrapper.style.left = `${left + movementX}px`;
+            wrapper.style.top = `${top + movementY}px`
+        }
+
+        header.addEventListener("mousedown", () => {
+         header.classList.add("active");
+         header.addEventListener("mousemove", ondrag);
+
+        });
+
+        //remove active eventListerner 
+        document.addEventListener("mouseup", () => {
+            header.classList.remove("active");
+         header.removeEventListener("mousemove", ondrag);
+
+        });
+
+    </script>
+</body>
+</html>
